@@ -37,28 +37,35 @@
     </div>
 
     <script>
-        let results=document.getElementById("result");
-        let encountered=false;
+        let results=document.getElementById("result"); //select input field 
+        let encountered=false;  //when we need to clear the screen.when a function called or a specific task done
+        
+        //display the value inside text field or calculator display
         function setVal(value){
             if(encountered && !isNaN(value)){
+                //if an operation completed then encountered will be true and clear the screen.if encountered but we type numeric 
+                //value then the disply won't be empty
                 results.value= "";
             }
-
             results.value += value;
             encountered =false;
         }
 
         function clearValue(){
+            //totally clear the display
             results.value="";
             console.log("clear");
             encountered =false;
         }
 
         function result(){
-           let final_result=results.value.replace("^","**");
+            //calculate and display the final result 
+            
+           let final_result=results.value.replace("^","**");  //inside display we see '^' instead of '**'.but for calculating wee need '**'.
+            //this line simply replace '^' with '**'
            try{
-             final_result=eval(final_result);
-            results.value=final_result;
+             final_result=eval(final_result);  //this line will make a str into jS code and that's why we should use try block to handle exception
+             results.value=final_result;
            }catch(err){
                results.value="syntax error...!!";            
            }
@@ -67,6 +74,7 @@
         }
 
         function del(){
+            //delete last value 
             final_result =results.value.substring(0,results.value.length-1);
             results.value=final_result;
             
